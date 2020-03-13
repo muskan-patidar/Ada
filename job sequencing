@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct job{
+	char id;
+	int dead,profit;
+};
+bool cmp(job a,job b)
+{
+	return(a.profit>b.profit);
+}
+void jobsch(job a[],int n)
+{
+	sort (a,a+n,cmp);
+	int result[n];
+	bool slot[n];
+	for(int i=0;i<n;i++)
+	{
+		slot[i]=false;
+	}
+	for(int i=0;i<n;i++)
+	{
+		for(int j=min(n,a[i].dead)-1;j>=0;j--)
+		{
+			if(slot[j]==false)
+			{
+				result[j]=i;
+				slot[j]=true;
+				break;
+			}
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		if(slot[i])
+		{
+			cout<<a[result[i]].id<<" ";
+		}
+	}
+}int main()
+{job
+	a[]={{'a',2,100},{'b',3,200},{'c',4,10},{'d',1,400},{'e',5,50}};
+	int n=sizeof(a)/sizeof(a[0]);
+	cout<<"Max profit:"<<endl;
+	jobsch(a,n);
+	return 0;}
+	
